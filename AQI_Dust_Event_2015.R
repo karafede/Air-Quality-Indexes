@@ -303,24 +303,24 @@ write_csv(UAE_CO, "D:/AQI/UAE_CO_8h_Max.csv")
 ##################################################################################
 # AQ data (24-hr daily averages, filtered from outliers 4-box plots)-------------
 
-dir_AQ <- "Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/daily data/Daily filtered with 4 boxplot"
+dir_AQ <- "Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/daily data/daily moved/Daily_mean"
 # dir_AQ <- "E:/MASDAR_FK/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/daily data/daily moved/daily_filtered_4_box"
+# dir_AQ <- "E:/MASDAR_FK/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/daily data/daily moved/Daily_mean"
 
+EAD_AQ_2013 <- read.csv(paste0(dir_AQ, "/","database_EAD_2013_daily_mean.csv"))
+EAD_AQ_2014 <- read.csv(paste0(dir_AQ, "/","database_EAD_2014_daily_mean.csv"))
+EAD_AQ_2015 <- read.csv(paste0(dir_AQ, "/","database_EAD_2015_daily_mean.csv"))
+EAD_AQ_2016 <- read.csv(paste0(dir_AQ, "/","database_EAD_2016_daily_mean.csv"))
 
-EAD_AQ_2013 <- read.csv(paste0(dir_AQ, "/","database_EAD_ 2013 _daily_filtered.csv"))
-EAD_AQ_2014 <- read.csv(paste0(dir_AQ, "/","database_EAD_ 2014 _daily_filtered.csv"))
-EAD_AQ_2015 <- read.csv(paste0(dir_AQ, "/","database_EAD_ 2015 _daily_filtered.csv"))
-EAD_AQ_2016 <- read.csv(paste0(dir_AQ, "/","database_EAD_ 2016 _daily_filtered.csv"))
+DM_AQ_2013 <- read.csv(paste0(dir_AQ, "/","database_DM_2013_daily_mean.csv"))
+DM_AQ_2014 <- read.csv(paste0(dir_AQ, "/","database_DM_2014_daily_mean.csv"))
+DM_AQ_2015 <- read.csv(paste0(dir_AQ, "/","database_DM_2015_daily_mean.csv"))
+DM_AQ_2016 <- read.csv(paste0(dir_AQ, "/","database_DM_2016_daily_mean.csv"))
 
-DM_AQ_2013 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2013 _daily_filtered.csv"))
-DM_AQ_2014 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2014 _daily_filtered.csv"))
-DM_AQ_2015 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2015 _daily_filtered.csv"))
-DM_AQ_2016 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2016 _daily_filtered.csv"))
-
-NCMS_AQ_2013 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2013 _daily_filtered.csv"))
-NCMS_AQ_2014 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2014 _daily_filtered.csv"))
-NCMS_AQ_2015 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2015 _daily_filtered.csv"))
-NCMS_AQ_2016 <- read.csv(paste0(dir_AQ, "/","database_DM_ 2016 _daily_filtered.csv"))
+NCMS_AQ_2013 <- read.csv(paste0(dir_AQ, "/","database_NCMS_2013_daily_mean.csv"))
+NCMS_AQ_2014 <- read.csv(paste0(dir_AQ, "/","database_NCMS_2014_daily_mean.csv"))
+NCMS_AQ_2015 <- read.csv(paste0(dir_AQ, "/","database_NCMS_2015_daily_mean.csv"))
+NCMS_AQ_2016 <- read.csv(paste0(dir_AQ, "/","database_NCMS_2016_daily_mean.csv"))
 
 # bind data together
 UAE_AQ <- rbind(EAD_AQ_2013, EAD_AQ_2014, EAD_AQ_2015, EAD_AQ_2016,
@@ -440,29 +440,31 @@ str(UAE_PM25)
 
 # SO2 and NO2 (1-hr)---------------------------------------------------------------------
 # for EAD use filtered data (4 boxplot)
-dir_SO2_NO2 <- "Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/Hourly Database format CSV/Arranged dates/R files/filtered_4_box" 
+dir_SO2_NO2 <- "Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/Hourly Database format CSV/Arranged dates" 
 # dir_SO2_NO2 <- "E:/MASDAR_FK/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/Hourly Database format CSV/Arranged dates/R files/filtered_4_box" 
+# dir_SO2_NO2 <- "E:/MASDAR_FK/Air Quality/Phase 1/Pathflow of Phase I_DG/dawit Data/Hourly Database format CSV/Arranged dates" 
 
-EAD_SO2_NO2_2013 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_ 2013 _hourly_filtered.csv"))
-EAD_SO2_NO2_2014 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_ 2014 _hourly_filtered.csv"))
-EAD_SO2_NO2_2015 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_ 2015 _hourly_filtered.csv"))
-EAD_SO2_NO2_2015$DateTime <- EAD_SO2_NO2_2015$DateTime +3
-EAD_SO2_NO2_2016 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_ 2016 _hourly_filtered.csv"))
-EAD_SO2_NO2_2016$DateTime <- EAD_SO2_NO2_2016$DateTime +3
 
-DM_SO2_NO2_2013 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_ 2013 _hourly_filtered.csv"))
-DM_SO2_NO2_2013$DateTime <- DM_SO2_NO2_2013$DateTime +3
-DM_SO2_NO2_2014 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_ 2014 _hourly_filtered.csv"))
-DM_SO2_NO2_2014$DateTime <- DM_SO2_NO2_2014$DateTime +3
-DM_SO2_NO2_2015 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_ 2015 _hourly_filtered.csv"))
-DM_SO2_NO2_2015$DateTime <- DM_SO2_NO2_2015$DateTime +3
-DM_SO2_NO2_2016 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_ 2016 _hourly_filtered.csv"))
-DM_SO2_NO2_2016$DateTime <- DM_SO2_NO2_2016$DateTime +3
+EAD_SO2_NO2_2013 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_2013_hourly.csv"))
+EAD_SO2_NO2_2014 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_2014_hourly.csv"))
+EAD_SO2_NO2_2015 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_2015_hourly.csv"))
+EAD_SO2_NO2_2015$DateTime <- EAD_SO2_NO2_2015$DateTime +3   # seconds
+EAD_SO2_NO2_2016 <- read_csv(paste0(dir_SO2_NO2, "/","database_EAD_2016_hourly.csv"))
+EAD_SO2_NO2_2016$DateTime <- EAD_SO2_NO2_2016$DateTime +3  # seconds
 
-NCMS_SO2_NO2_2013 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_ 2013 _hourly_filtered.csv"))
-NCMS_SO2_NO2_2014 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_ 2014 _hourly_filtered.csv"))
-NCMS_SO2_NO2_2015 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_ 2015 _hourly_filtered.csv"))
-NCMS_SO2_NO2_2016 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_ 2016 _hourly_filtered.csv"))
+DM_SO2_NO2_2013 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_2013_hourly.csv"))
+DM_SO2_NO2_2013$DateTime <- DM_SO2_NO2_2013$DateTime +3    # seconds
+DM_SO2_NO2_2014 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_2014_hourly.csv"))
+DM_SO2_NO2_2014$DateTime <- DM_SO2_NO2_2014$DateTime +3    # seconds
+DM_SO2_NO2_2015 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_2015_hourly.csv"))
+DM_SO2_NO2_2015$DateTime <- DM_SO2_NO2_2015$DateTime +3    # seconds
+DM_SO2_NO2_2016 <- read_csv(paste0(dir_SO2_NO2, "/","database_DM_2016_hourly.csv"))
+DM_SO2_NO2_2016$DateTime <- DM_SO2_NO2_2016$DateTime +3    # seconds
+
+NCMS_SO2_NO2_2013 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_2013_hourly.csv"))
+NCMS_SO2_NO2_2014 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_2014_hourly.csv"))
+NCMS_SO2_NO2_2015 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_2015_hourly.csv"))
+NCMS_SO2_NO2_2016 <- read_csv(paste0(dir_SO2_NO2, "/","database_NCMS_2016_hourly.csv"))
 
 
 SO2_NO2_all <- rbind(EAD_SO2_NO2_2013, EAD_SO2_NO2_2014, EAD_SO2_NO2_2015, EAD_SO2_NO2_2016,
@@ -600,496 +602,128 @@ names(UAE_NO2)[names(UAE_NO2) == 'Value'] <- 'NO2_1hr'
 ### Bind all Data Together #############
 ########################################
 
-######################## join NO2, SO2,  O3 and CO ######################################################
-
-QQQ<- cbind(SO2_NO2_all[,1:2], SO2_NO2_all[,4:6])
-
-ZZZ<- QQQ %>%
-  left_join(UAE_NO2, c("DateTime",   "Site","Site_Type", "Latitude", "Longitude"))
-
-# head(ZZZ)
-
-AAA <- ZZZ %>%
-  left_join(UAE_SO2, c("DateTime", "Date",  "Site", "Latitude", "Longitude", "Hour"))
-
-
-BBB <- AAA %>%
-  left_join(UAE_O3, by = c("Date", "Site", "Latitude", "Longitude"))
-
-CCC <- BBB %>%
-  left_join(UAE_CO, by = c("Date", "Site", "Latitude", "Longitude"))
-
-# save(CCC, UAE_AQ,UAE_CO,UAE_NO2,UAE_O3,UAE_PM10, UAE_PM25,UAE_SO2, file="D:/AQI/saves.Rdata")
-
-########################################################################################################
-
-# load("D:/AQI/saves.Rdata")
-
-
-UAE_PM25$Date <- as.POSIXct(as.Date(UAE_PM25$Date, "%Y-%m-%d")) 
-UAE_PM25 <- UAE_PM25 %>%
-  mutate(Date = date(Date))
-str(UAE_PM25)
-
-unique(UAE_PM25$Site)
-
-UAE_PM <- cbind(UAE_PM10, UAE_PM25$PM25_24hr)
-
-rm(AAA, BBB, QQQ)
-
-
-# join PM2.5 and PM10 #########################
-
-AQ_data <- CCC %>%
-  left_join(UAE_PM, by = c("Date", "Site", "Latitude", "Longitude"))
-
-head(AQ_data)
-
-AQ_data_clean <- AQ_data %>%
-  select(- Site_Type.x,
-         - Site_Type.y,
-         - Site_Type.x.x,
-         - Site_Type.y.y)
-
-head(AQ_data_clean)
-
-# rename PM25 column
-names(AQ_data_clean)[names(AQ_data_clean) == 'UAE_PM25$PM25_24hr'] <- 'PM25_24hr'
-
-head(AQ_data_clean)
-
-
-# make some cross checks 
-ab<- filter( AQ_data, AQ_data$Site == NA)
-ab<- filter( AQ_data, AQ_data$Latitude ==  NA)
-ab<- filter( AQ_data, AQ_data$Longitude ==  NA)
-ab<- filter( AQ_data, AQ_data$Site ==  "Hamdan Street")
-
-rm(AQ_data, CCC, ab)
+######################## join O3 and CO #########
+AAA <- UAE_O3 %>%
+  left_join(UAE_CO, by = c("Date", "Site", "Latitude", "Longitude", "Site_Type"), all=TRUE)
 
 ########################
 
 ######################## join O3, CO, SO2 #######
-# BBB <- AAA %>%
-#   left_join(UAE_SO2, c("Date", "Site", "Latitude", "Longitude"), all = TRUE)
+BBB <- AAA %>%
+  left_join(UAE_SO2, c("Date", "Site", "Latitude", "Longitude", "Site_Type"), all=TRUE)
 
+# save intermediate files because there is not memory
 
-# write_csv(BBB, "D:/AQI/BBB.csv")
-# write_csv(UAE_NO2, "D:/AQI/UAE_NO2.csv")
+ write_csv(BBB, "D:/AQI/BBB.csv")
+ write_csv(UAE_NO2, "D:/AQI/UAE_NO2.csv")
 
+ ########################################################################
+ ########################################################################
+ ########################################################################
+ ########################################################################
+ # reload data......
+ 
+ 
+ setwd("D:/AQI")
+ BBB <- read_csv("D:/AQI/BBB.csv")
+ UAE_NO2 <- read_csv("D:/AQI/UAE_NO2.csv")
+ 
+ 
+ # filter data on the days of the dust storm event on 2 April 2015
+ BBB <- BBB %>%
+   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
+ 
+ UAE_NO2 <- UAE_NO2 %>%
+   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
+ 
+ UAE_PM25 <- UAE_PM25 %>%
+   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
+ 
+ UAE_PM10 <- UAE_PM10 %>%
+   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
 
-
-# CCC <- BBB %>%
-#   left_join(UAE_NO2, c("DateTime", "Date",  "Site", "Latitude", "Longitude", "Hour"))
+ CCC <- BBB %>%
+   left_join(UAE_NO2, c("Date",  "Site", "Latitude", "Longitude", "Site_Type", "Hour"),  all=TRUE)
 
 
 ########################
 
-# AQ_data <- CCC %>%
-#   left_join(UAE_PM25, c("DateTime", "Date",  "Site", "Latitude", "Longitude", "Hour"))
+AQ_data <- CCC %>%
+  left_join(UAE_PM25, c("Date", "Site", "Latitude", "Longitude", "Site_Type"), all=TRUE)
 
+AQ_data <- AQ_data %>%
+  left_join(UAE_PM10, c("Date", "Site", "Latitude", "Longitude", "Site_Type"),all=TRUE)
 
-# AQ_data <- AQ_data %>%
-#   left_join(UAE_PM10, c("Date", "Site", "Latitude", "Longitude", "Site_Type"))
+str(AQ_data)
 
-
- save(AQ_data_clean, file="D:/AQI/AQ_data_all.Rdata")
- write_csv(AQ_data_clean, "D:/AQI/AQ_data_all_clean.csv")
-# write_csv(AQ_data_clean, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_clean.csv")
+ write_csv(AQ_data, "D:/AQI/AQ_data_all_DUST_event.csv")
+# write_csv(AQ_data, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all.csv")
 
 ################################################################################
 ## AIR QUALITY INDEXES ##-------------------------------------------------------
 ################################################################################
 
-# AQ_data <- read_csv("D:/AQI/AQ_data_all.csv")
-# AQ-data <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all.csv")
- 
- str(AQ_data_clean)
- head(AQ_data_clean)
+AQ_data <- read_csv("D:/AQI/AQ_data_all_DUST_event.csv")
+# AQ-data <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_no_outliers.csv")
 
-# AQ_data_clean$PM25_24hr <- as.numeric(AQ_data_clean$PM25_24hr)
+ # remove lines wtih NA in the max_AQI column
+ AQ_data <- AQ_data[!is.na(AQ_data$Hour),]
+ 
+ str(AQ_data)
+
+ AQ_data_clean <- AQ_data %>%
+   select(-DateTime.x,
+          -DateTime.y)
+ 
+ 
+
+str(AQ_data_clean)
+
+AQ_data_clean$PM25_24hr <- as.numeric(AQ_data_clean$PM25_24hr)
+
+ write_csv(AQ_data_clean, "D:/AQI/AQ_data_all_clean_DUST_event.csv" )
+# write_csv(AQ_data_clean, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_clean.csv" )
 
 
 #####################################################################################
 #### correct existing data with Max daily 8h O3 and CO values #######################
  
  
- AQ_data_all_clean <- read_csv("D:/AQI/AQ_data_all_clean.csv" )
- AQ_data_all_clean$PM25_24hr <- as.numeric(AQ_data_all_clean$PM25_24hr)
+ AQ_data_all_clean <- read_csv("D:/AQI/AQ_data_all_clean_DUST_event.csv" )
  
  O3_max <- read_csv("D:/AQI/UAE_O3_8h_Max.csv")
  CO_max <- read_csv("D:/AQI/UAE_CO_8h_Max.csv")
  
- str(AQ_data_all_clean)
- head(AQ_data_all_clean)
+ # filter data on the days of the dust storm event on 2 April 2015
+ O3_max <- O3_max %>%
+   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
  
- # AQ_data_all_clean <- AQ_data_all_clean %>%
- #   select(- Pollutant_O3,
- #          - O3_8hr,
- #          - Pollutant_CO,
- #          - CO_8hr)
+ CO_max <- CO_max %>%
+   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
+ 
  
  
  AQ_data_all_clean <- AQ_data_all_clean %>%
-    select(- Pollutant_O3,
-           - Max_O3_8hr,
-           - Pollutant_CO,
-           - Max_CO_8hr)
+   select(- Pollutant_O3,
+          - Max_O3_8hr,
+          - Pollutant_CO,
+          - Max_CO_8hr)
  
-
  
- AQ_data <- AQ_data_all_clean %>%
-   left_join(O3_max, c("Date", "Site", "Latitude", "Longitude", "Site_Type"))
+ AQ_data_all_clean <- AQ_data_all_clean %>%
+   left_join(O3_max, c("Date", "Site", "Latitude", "Longitude", "Site_Type"), all=TRUE)
  
- head(AQ_data)
+ AQ_data_all_clean <- AQ_data_all_clean %>%
+   left_join(CO_max, c("Date", "Site", "Latitude", "Longitude", "Site_Type"), all=TRUE)
  
- AQ_data <- AQ_data %>%
-   left_join(CO_max, c("Date", "Site", "Latitude", "Longitude", "Site_Type"))
- 
- head(AQ_data)
- 
- write_csv(AQ_data, "D:/AQI/AQ_data_all_clean_new.csv")
+ write_csv(AQ_data_all_clean, "D:/AQI/AQ_data_all_clean_new_DUST_event.csv")
  
  
 #############################################################################
 #############################################################################
-#############################################################################
-############################################################################# 
-#############################################################################
-#############################################################################
-#############################################################################
-############################################################################# 
  
  
  
  
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- ###### old stuff #############3
-# AQ_data <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_clean.csv")
-# # AQ_data <- read_csv("D:/AQI/AQ_data_all_clean.csv")
-# str(AQ_data)
-# 
-# AQ_data$PM25_24hr <- as.numeric(AQ_data$PM25_24hr)
-# 
-# str(AQ_data)
-# 
-# 
-# ###########
-# ### O3 ####
-# ########### each hour (8-hr average) ppb
-# 
-# # i <- 10
-# 
-# aqi_O3 <- NULL
-# aqi_PM25 <- NULL
-# aqi_PM10 <- NULL
-# aqi_CO <- NULL
-# aqi_SO2 <- NULL
-# aqi_NO2 <- NULL
-# 
-# # AQ_data <- AQ_data[1:10000,]
-# 
-# for (i in 1:nrow(AQ_data)) {
-#     if (!is.na(AQ_data$O3_8hr[i]) & AQ_data$O3_8hr[i] < 54 & AQ_data$O3_8hr[i] > 0)
-#     AQI_O3 = ((50-0)/(54-0)) * (AQ_data$O3_8hr[i] - 0) + 0
-#     # AQI_O3 <- "Good"
-#     # green <- "#00CD00"
-#  
-#     if (!is.na(AQ_data$O3_8hr[i]) & AQ_data$O3_8hr[i] < 70 & AQ_data$O3_8hr[i] > 55)
-#      AQI_O3 = ((100-51)/(70-55)) * (AQ_data$O3_8hr[i] - 55) + 51
-#     # AQI_O3 <- "Moderate"
-#     # yellow <- "#ffff00"
-# 
-#     if (!is.na(AQ_data$O3_8hr[i]) & AQ_data$O3_8hr[i] < 85 & AQ_data$O3_8hr[i] > 71)
-#     AQI_O3 = ((150-101)/(85-71)) * (AQ_data$O3_8hr[i] - 71) + 101
-#    # AQI_O3 <- "Unhealthy for Sensitive Groups"
-#    # orange <- "#e59400"
-# 
-#    if (!is.na(AQ_data$O3_8hr[i]) & AQ_data$O3_8hr[i] < 105 & AQ_data$O3_8hr[i] > 86)
-#    AQI_O3 = ((200-151)/(105-86)) * (AQ_data$O3_8hr[i] - 86) + 151
-#    # AQI_O3 <- "Unhealthy"
-#    # red <- "#ff0000" 
-# 
-#     if (!is.na(AQ_data$O3_8hr[i]) & AQ_data$O3_8hr[i] < 200 & AQ_data$O3_8hr[i] > 106)
-#     AQI_O3 = ((300-201)/(200-106)) * (AQ_data$O3_8hr[i] - 106) + 201
-#     # AQI_O3 <- "Very Unhealthy" 
-#     # purple <- "#800080"
-#  
-#     if(is.na(AQ_data$O3_8hr[i]))
-#     AQI_O3 = NA
-# 
-# # print(AQI_O3)
-# # print(i)
-# aqi_O3 <- rbind(AQI_O3, aqi_O3) 
-# aqi_O3 <- as.vector(aqi_O3)
-# aqi_O3 <- as.data.frame(aqi_O3)
-# 
-# }
-# 
-# 
-# # reverse the order of the lines
-# aqi_O3 <- aqi_O3 %>%
-#   arrange(-row_number())
-# 
-# write.csv(aqi_O3, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi.O3.csv")
-# 
-# AQ_data <- cbind(AQ_data, aqi_O3)
-# 
-#   
-# #############
-# ### PM25 ####
-# ############# each day (24-hr average) ug/m3
-# 
-# # i <- 3915  
-#   
-# for (i in 1:nrow(AQ_data)) {
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 12 & AQ_data$PM25_24hr[i] > 0)
-#        AQI_PM25 = ((50-0)/(12-0)) * (AQ_data$PM25_24hr[i] - 0) + 0
-#     
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 35.4 & AQ_data$PM25_24hr[i] > 12.1)
-#         AQI_PM25 = ((100-51)/(35.4-12.1)) * (AQ_data$PM25_24hr[i] - 12.1) + 51
-#     
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 55.4 & AQ_data$PM25_24hr[i] > 35.5)
-#         AQI_PM25 = ((150-101)/(55.4-35.5)) * (AQ_data$PM25_24hr[i] - 35.5) + 101
-# 
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 150.4 & AQ_data$PM25_24hr[i] > 55.5)
-#          AQI_PM25 = ((200-151)/(150.4-55.5)) * (AQ_data$PM2.5_24hr[i] - 55.5) + 151
-# 
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 250.4 & AQ_data$PM25_24hr[i] > 150.5)
-#         AQI_PM25 = ((300-201)/(250.4-150.5)) * (AQ_data$PM2.5_24hr[i] - 150.5) + 201
-#       
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 350.4 & AQ_data$PM25_24hr[i] > 250.5)
-#         AQI_PM25 = ((400-301)/(350.4-250.5)) * (AQ_data$PM25_24hr[i] - 250.5) + 301
-# 
-#     if (!is.na(AQ_data$PM25_24hr[i]) & AQ_data$PM25_24hr[i] < 500.4 & AQ_data$PM25_24hr[i] > 350.5)
-#         AQI_PM25 = ((500-401)/(500.4-350.5)) * (AQ_data$PM25_24hr[i] - 350.5) + 401
-#   
-#     if(is.na(AQ_data$PM25_24hr[i]))
-#       AQI_PM25 = NA
-#     
-#       # print(AQI_PM25)
-#       # print(i)
-#       aqi_PM25 <- rbind(AQI_PM25, aqi_PM25) 
-#       aqi_PM25 <- as.vector(aqi_PM25)
-#       aqi_PM25 <- as.data.frame(aqi_PM25)
-#       
-#   }
-# 
-# # reverse the order of the lines
-# aqi_PM25 <- aqi_PM25 %>%
-#   arrange(-row_number())
-# 
-# write.csv(aqi_PM25, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_PM25.csv")
-# 
-# AQ_data <- cbind(AQ_data, aqi_PM25)
-# 
-# 
-# #############
-# ### PM10 ####
-# ############# each day (24-hr average) ug/m3
-#       
-# for (i in 1:nrow(AQ_data))  {   
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i]  < 54 & AQ_data$PM10_24hr[i]  > 0)
-#        AQI_PM10 = ((50-0)/(54-0)) * (AQ_data$PM10_24hr[i]  - 0) + 0
-#       
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i] < 154 & AQ_data$PM10_24hr[i] > 55)
-#        AQI_PM10 = ((100-51)/(154-55)) * (AQ_data$PM10_24hr[i] - 55) + 51
-#     
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i] < 254 & AQ_data$PM10_24hr[i] > 155)
-#       AQI_PM10 = ((150-101)/(254-155)) * (AQ_data$PM10_24hr[i] - 155) + 101
-# 
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i] < 354 & AQ_data$PM10_24hr[i] > 255)
-#       AQI_PM10 = ((200-151)/(354-255)) * (AQ_data$PM10_24hr[i] - 255) + 151
-#     
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i] < 424 & AQ_data$PM10_24hr[i] > 355)
-#       AQI_PM10 = ((300-201)/(424-355)) * (AQ_data$PM10_24hr[i] - 355) + 201
-#     
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i] < 504 & AQ_data$PM10_24hr[i] > 425)
-#       AQI_PM10 = ((400-301)/(504-425)) * (AQ_data$PM10_24hr[i] - 425) + 301
-#     
-#     if (!is.na(AQ_data$PM10_24hr[i]) & AQ_data$PM10_24hr[i] < 604 & AQ_data$PM10_24hr[i] > 505)
-#       AQI_PM10 = ((500-401)/(604-505)) * (AQ_data$PM10_24hr[i] - 505) + 401
-#     
-#     if(is.na(AQ_data$PM10_24hr[i]))
-#       AQI_PM10 = NA
-#     
-#     # print(AQI_PM10)
-#     # print(i)
-#     aqi_PM10 <- rbind(AQI_PM10, aqi_PM10) 
-#     aqi_PM10 <- as.vector(aqi_PM10)
-#     aqi_PM10 <- as.data.frame(aqi_PM10)
-#     
-# }
-#    
-# # reverse the order of the lines
-# aqi_PM10 <- aqi_PM10 %>%
-#   arrange(-row_number())
-# 
-# write.csv(aqi_PM10, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_PM10.csv")
-# 
-# AQ_data <- cbind(AQ_data, aqi_PM10)
-# 
-# #############
-# ### CO ####
-# ############# every 1-hr (8-hr average) ppm
-# 
-# for (i in 1:nrow(AQ_data)) {   
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 4.4 & AQ_data$CO_8hr[i] > 0)
-#       AQI_CO = ((50-0)/(4.4-0)) * (AQ_data$CO_8hr[i] - 0) + 0
-#     
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 9.4 & AQ_data$CO_8hr[i] > 4.5)
-#       AQI_CO = ((100-51)/(9.4-4.5)) * (AQ_data$CO_8hr[i] - 4.5) + 51
-#     
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 12.4 & AQ_data$CO_8hr[i] > 9.5)
-#       AQI_CO = ((150-101)/(12.4-9.5)) * (AQ_data$CO_8hr[i] - 9.5) + 101
-#     
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 15.4 & AQ_data$CO_8hr[i] > 12.5)
-#       AQI_CO = ((200-151)/(15.4-12.5)) * (AQ_data$CO_8hr[i] - 12.5) + 151
-#     
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 30.4 & AQ_data$CO_8hr[i] > 15.5)
-#       AQI_CO = ((300-201)/(30.4-15.5)) * (AQ_data$CO_8hr[i] - 15.5) + 201
-#     
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 40.4 & AQ_data$CO_8hr[i] > 30.5)
-#       AQI_CO = ((400-301)/(40.4-30.5)) * (AQ_data$CO_8hr[i] - 30.5) + 301
-#     
-#     if (!is.na(AQ_data$CO_8hr[i]) & AQ_data$CO_8hr[i] < 50.4 & AQ_data$CO_8hr[i] > 40.4)
-#       AQI_CO = ((500-401)/(50.4-40.4)) * (AQ_data$CO_8hr[i] - 40.4) + 401
-#     
-#     if(is.na(AQ_data$CO_8hr[i]))
-#       AQI_CO = NA
-#     
-#     # print(AQI_CO)
-#     # print(i)
-#     aqi_CO <- rbind(AQI_CO, aqi_CO) 
-#     aqi_CO <- as.vector(aqi_CO)
-#     aqi_CO <- as.data.frame(aqi_CO)
-#        
-#   }
-# 
-# # reverse the order of the lines
-# aqi_CO <- aqi_CO %>%
-#   arrange(-row_number())
-# 
-# write.csv(aqi_CO, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_CO.csv")
-# 
-# AQ_data <- cbind(AQ_data, aqi_CO)
-# 
-# 
-# #############
-# ### SO2 ####
-# ############# every 1-hr ppb
-# 
-# for (i in 1:nrow(AQ_data))  {   
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 35 & AQ_data$SO2_1hr[i] > 0)
-#       AQI_SO2 = ((50-0)/(35-0)) * (AQ_data$SO2_1hr[i] - 0) + 0
-#     
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 75 & AQ_data$SO2_1hr[i] > 36)
-#       AQI_SO2 = ((100-51)/(75-36)) * (AQ_data$SO2_1hr[i] - 30) + 51
-#     
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 185 & AQ_data$SO2_1hr[i] > 76)
-#       AQI_SO2 = ((150-101)/(185-76)) * (AQ_data$SO2_1hr[i] - 76) + 101
-#     
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 304 & AQ_data$SO2_1hr[i] > 186)
-#       AQI_SO2 = ((200-151)/(304-186)) * (AQ_data$SO2_1hr[i] - 186) + 151
-#     
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 604 & AQ_data$SO2_1hr[i] > 305)
-#       AQI_SO2 = ((300-201)/(604-305)) * (AQ_data$SO2_1hr[i] - 305) + 201
-#     
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 804 & AQ_data$SO2_1hr[i] > 605)
-#       AQI_SO2 = ((400-301)/(804-605)) * (AQ_data$SO2_1hr[i] - 605) + 301
-#     
-#     if (!is.na(AQ_data$SO2_1hr[i]) & AQ_data$SO2_1hr[i] < 1004 & AQ_data$SO2_1hr[i] > 805)
-#       AQI_SO2 = ((500-401)/(1004-805)) * (AQ_data$SO2_1hr[i] - 805) + 401
-#     
-#     if(is.na(AQ_data$SO2_1hr[i]))
-#       AQI_SO2 = NA
-#     
-#     # print(AQI_SO2)
-#     # print(i)
-#     aqi_SO2 <- rbind(AQI_SO2, aqi_SO2) 
-#     aqi_SO2 <- as.vector(aqi_SO2)
-#     aqi_SO2 <- as.data.frame(aqi_SO2)
-#     
-#   }
-# 
-# # reverse the order of the lines
-# aqi_SO2 <- aqi_SO2 %>%
-#   arrange(-row_number())
-# 
-# write.csv(aqi_SO2, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_SO2.csv")
-# 
-# AQ_data <- cbind(AQ_data, aqi_SO2)
-# 
-# 
-# #############
-# ### NO2 ####
-# ############# every 1-hr ppb
-# 
-# for (i in 1:nrow(AQ_data))  {   
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 53 & AQ_data$NO2_1hr[i] > 0)
-#       AQI_NO2 = ((50-0)/(53-0)) * (AQ_data$NO2_1hr[i] - 0) + 0
-#     
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 100 & AQ_data$NO2_1hr[i] > 54)
-#       AQI_NO2 = ((100-51)/(100-54)) * (AQ_data$NO2_1hr[i] - 54) + 51
-#     
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 360 & AQ_data$NO2_1hr[i] > 101)
-#       AQI_NO2 = ((150-101)/(360-101)) * (AQ_data$NO2_1hr[i] - 101) + 101
-#     
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 649 & AQ_data$NO2_1hr[i] > 361)
-#       AQI_NO2 = ((200-151)/(649-361)) * (AQ_data$NO2_1hr[i] - 361) + 151
-#     
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 1249 & AQ_data$NO2_1hr[i] > 650)
-#       AQI_NO2 = ((300-201)/(1249-650)) * (AQ_data$NO2_1hr[i] - 650) + 201
-#     
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 1649 & AQ_data$NO2_1hr[i] > 1250)
-#       AQI_NO2 = ((400-301)/(1649-1250)) * (AQ_data$NO2_1hr[i] - 1250) + 301
-#     
-#     if (!is.na(AQ_data$NO2_1hr[i]) & AQ_data$NO2_1hr[i] < 2049 & AQ_data$NO2_1hr[i] > 1650)
-#       AQI_NO2 = ((500-401)/(2049-1650)) * (AQ_data$NO2_1hr[i] - 1650) + 401
-#     
-#     if(is.na(AQ_data$NO2_1hr[i]))
-#       AQI_NO2 = NA
-#     
-#     # print(AQI_NO2)
-#     # print(i)
-#     aqi_NO2 <- rbind(AQI_NO2, aqi_NO2) 
-#     aqi_NO2 <- as.vector(aqi_NO2)
-#     aqi_NO2 <- as.data.frame(aqi_NO2)
-#     
-#   }
-# 
-# # reverse the order of the lines
-# aqi_NO2 <- aqi_NO2 %>%
-#   arrange(-row_number())
-# 
-# write.csv(aqi_NO2, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_NO2.csv")
-# 
-# AQ_data <- cbind(AQ_data, aqi_NO2)
-# 
-# # save data ##------------------------------------------------------------------
-# write_csv(AQ_data, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_AQI_data_all.csv")
-# 
-# ## end ###
-# 
-# 
-
-

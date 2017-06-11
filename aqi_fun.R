@@ -4,12 +4,14 @@
 
 aqi_O3_fun <- function(dawit){
   
-  if (!is.na(dawit) & dawit < 54 & dawit > 0)
-    AQI_O3 = ((50-0)/(54-0)) * (dawit - 0) + 0
+  # for the first break point I have used the value from UAE
+  
+  if (!is.na(dawit) & dawit < 51.02 & dawit > 0)
+    AQI_O3 = ((50-0)/(51.02-0)) * (dawit - 0) + 0
   
   
-  if (!is.na(dawit) & dawit < 70 & dawit> 55)
-    AQI_O3 = ((100-51)/(70-55)) * (dawit - 55) + 51
+  if (!is.na(dawit) & dawit < 70 & dawit> 52)
+    AQI_O3 = ((100-51)/(70-52)) * (dawit - 52) + 51
   
   
   if (!is.na(dawit) & dawit < 85 & dawit > 71)
@@ -120,8 +122,8 @@ aqi_PM25_fun <- function(dawit){
 
 aqi_PM10_fun <- function(dawit){
   
-  if (!is.na(dawit) & dawit  < 54 & dawit  > 0)
-    AQI_PM10 = ((50-0)/(54-0)) * (dawit  - 0) + 0
+  if (!is.na(dawit) & dawit  < 150.4 & dawit  > 0)
+    AQI_PM10 = ((50-0)/(150.4-0)) * (dawit  - 0) + 0
   
   if (!is.na(dawit) & dawit < 154 & dawit > 55)
     AQI_PM10 = ((100-51)/(154-55)) * (dawit - 55) + 51
