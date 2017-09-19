@@ -26,8 +26,6 @@ aqi_O3_fun <- function(dawit){
     AQI_O3 = ((300-201)/(200-106)) * (dawit - 106) + 201
   
   
-  
-  
   if(is.na(dawit))
     AQI_O3 = NA
   if(exists("AQI_O3")){
@@ -44,11 +42,11 @@ return(AQI_O3)
 
 aqi_CO_fun <- function(dawit){
   
-  if (!is.na(dawit) & dawit < 4.4 & dawit > 0)
-    AQI_CO = ((50-0)/(4.4-0)) * (dawit - 0) + 0
+  if (!is.na(dawit) & dawit < 9.04 & dawit > 0)
+    AQI_CO = ((50-0)/(9.04-0)) * (dawit - 0) + 0
   
-  if (!is.na(dawit) & dawit < 9.4 & dawit > 4.5)
-    AQI_CO = ((100-51)/(9.4-4.5)) * (dawit - 4.5) + 51
+  if (!is.na(dawit) & dawit < 9.4 & dawit > 9.1)
+    AQI_CO = ((100-51)/(9.4-9.1)) * (dawit - 9.1) + 51
   
   if (!is.na(dawit) & dawit < 12.4 & dawit > 9.5)
     AQI_CO = ((150-101)/(12.4-9.5)) * (dawit - 9.5) + 101
@@ -128,7 +126,7 @@ aqi_PM10_fun <- function(dawit){
     AQI_PM10 = ((50-0)/(150.4-0)) * (dawit  - 0) + 0
   
   if (!is.na(dawit) & dawit < 154 & dawit > 151)
-    AQI_PM10 = ((100-51)/(154-150)) * (dawit - 55) + 51
+    AQI_PM10 = ((100-51)/(154-151)) * (dawit - 151) + 51
   
   if (!is.na(dawit) & dawit < 254 & dawit > 155)
     AQI_PM10 = ((150-101)/(254-155)) * (dawit - 155) + 101
@@ -163,11 +161,11 @@ aqi_PM10_fun <- function(dawit){
 
 aqi_SO2_fun <- function(dawit){
 
-if (!is.na(dawit) & dawit < 35 & dawit > 0)
-  AQI_SO2 = ((50-0)/(35-0)) * (dawit - 0) + 0
+if (!is.na(dawit) & dawit < 7.78 & dawit > 0)
+  AQI_SO2 = ((50-0)/(7.78-0)) * (dawit - 0) + 0
 
-if (!is.na(dawit) & dawit < 75 & dawit > 36)
-  AQI_SO2 = ((100-51)/(75-36)) * (dawit - 30) + 51
+if (!is.na(dawit) & dawit < 75 & dawit > 7.8)
+  AQI_SO2 = ((100-51)/(75-7.8)) * (dawit - 7.8) + 51
 
 if (!is.na(dawit) & dawit < 185 & dawit > 76)
   AQI_SO2 = ((150-101)/(185-76)) * (dawit - 76) + 101
@@ -202,11 +200,11 @@ return(AQI_SO2)
 
 aqi_NO2_fun <- function(dawit){
 
-if (!is.na(dawit) & dawit < 53 & dawit > 0)
-  AQI_NO2 = ((50-0)/(53-0)) * (dawit - 0) + 0
+if (!is.na(dawit) & dawit < 40.1 & dawit > 0)
+  AQI_NO2 = ((50-0)/(40.1-0)) * (dawit - 0) + 0
 
-if (!is.na(dawit) & dawit < 100 & dawit > 54)
-  AQI_NO2 = ((100-51)/(100-54)) * (dawit - 54) + 51
+if (!is.na(dawit) & dawit < 100 & dawit > 41)
+  AQI_NO2 = ((100-51)/(100-41)) * (dawit - 41) + 51
 
 if (!is.na(dawit) & dawit < 360 & dawit > 101)
   AQI_NO2 = ((150-101)/(360-101)) * (dawit - 101) + 101

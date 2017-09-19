@@ -358,13 +358,26 @@ AQ_data_AQI_Pollutant <- read_csv("final_AQI_2014_2016.csv")
 # save data as R object -----------------------------------
 save(AQ_data_AQI_Pollutant, file="D:/AQI/AQI_final.Rdata")
 
-
+#####################################################
 # reload data ---------------------------------------
 load("D:/AQI/AQI_final.Rdata")
 
 head(AQ_data_AQI_Pollutant)
 str(AQ_data_AQI_Pollutant)
 
+
+AQ_data_AQI <- AQ_data_AQI_Pollutant %>%
+  dplyr::select(Site,
+         DateTime,
+         Latitude,
+         Longitude,
+         max_AQI)
+
+AQ_data_AQI_2016 <- AQ_data_AQI %>%
+  filter(DateTime <= "2016-10-01 00:00:00" & DateTime >= "2016-07-01 00:00:00")
+
+save(AQ_data_AQI_2016, file="D:/AQI/AQI_final_2016.Rdata")
+write_csv(AQ_data_AQI_2016, "D:/AQI/sample_AQI_2016.csv")
 
 
 ########################################################################################

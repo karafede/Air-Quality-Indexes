@@ -18,7 +18,8 @@ AQ_data$Max_CO_8hr <- as.numeric(AQ_data$Max_CO_8hr )
 # load function for AQI calcualtions
 
 # source("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_fun.R")
-source("D:/AQI//aqi_fun.R")
+# source("D:/AQI//aqi_fun.R")
+source("D:/AQI//aqi_fun_UAE.R")
 
 ###########
 ### O3 ####
@@ -335,7 +336,7 @@ plot <- ggplot(UAE_AQI_DUST, aes(DateTime, mean_AQI)) +
         axis.text.x  = element_text(angle=0, vjust=0.5, hjust = 0.5, size=30, colour = "black", face="bold")) +
   theme(axis.title.y = element_text(face="bold", colour="black", size=30),
         axis.text.y  = element_text(angle=0, vjust=0.5, size=30, colour = "black")) +
-  ylim(0, 170)  +
+#  ylim(0, 170)  +
   xlim(min, max) +
   
   # add line for the AQI level and the Category
@@ -421,7 +422,7 @@ summary(AQ_data_AQI_Pollutant)
 
 
 jpeg('D:/AQI/UAE_Pollutant_BOXPLOT_AQI_DUST_EVENT_2015_hours.jpg',
-     quality = 100, bg = "white", res = 300, width = 18, height = 9, units = "in")
+     quality = 100, bg = "white", res = 300, width = 10, height = 9, units = "in")
 par(mar=c(4, 10, 9, 2) + 0.3)
 oldpar <- par(las=1)
 
@@ -441,36 +442,30 @@ plot <- ggplot(AQ_data_AQI_Pollutant, aes(max_Pollutant, max_AQI, fill = max_Pol
   theme(axis.title.x = element_text(face="bold", colour="black", size=14),
         axis.text.x  = element_text(angle=0, vjust=0.5, size=14, colour="black")) +
   ggtitle("Air Quality Indexes (UAE 29-03-2015 - 04-04-2015)") + 
-  theme(plot.title = element_text(lineheight=.8, face="bold", size = 20, hjust = 0.5)) 
-
-plot
-
-par(oldpar)
-dev.off()
+  theme(plot.title = element_text(lineheight=.8, face="bold", size = 20, hjust = 0.5)) +
 
 
-  
   # add line for the AQI level and the Category
-  geom_hline(yintercept =50, col="#00CD00", lty=1, size = 1) +
+  geom_hline(yintercept =50, col="#00CD00", lty=1, size = 0.5) +
  # geom_text(aes(x = 0.7 , y = 70, label = "Good"), size = 3) +
   
   
-  geom_hline(yintercept = 100, col="#ffff00", lty=1, size=1) +
+  geom_hline(yintercept = 100, col="#ffff00", lty=1, size=0.5) +
 #  geom_text(aes(x = 0.7 , y = 120, label = "Moderate"), size = 3) +
   
-  geom_hline(yintercept = 150, col="#e59400", lty=1, size=1) +
+  geom_hline(yintercept = 150, col="#e59400", lty=1, size=0.5) +
  # geom_text(aes(x = 1.15 , y = 170, label = "Unhealthy for Sensitive Groups"), size = 3) +
   
-  geom_hline(yintercept = 200, col="#ff0000", lty=1, size=1) +
+  geom_hline(yintercept = 200, col="#ff0000", lty=1, size=0.5) +
 #  geom_text(aes(x = 0.7 , y = 220, label = "Unhealthy"), size = 3) +
   
-  geom_hline(yintercept = 200, col="#ff0000", lty=1, size=1) +
+  geom_hline(yintercept = 200, col="#ff0000", lty=1, size=0.5) +
 #  geom_text(aes(x = 0.7 , y = 220, label = "Unhealthy"), size = 3) +
   
-  geom_hline(yintercept = 300, col="#800080", lty=1, size=2) +
+  geom_hline(yintercept = 300, col="#800080", lty=1, size=0.5) +
   #  geom_text(aes(x = 0.7 , y = 220, label = "Very Unhealthy"), size = 3) +
   
-  geom_hline(yintercept = 500, col="#800000", lty=1, size=2) +
+  geom_hline(yintercept = 500, col="#800000", lty=1, size=0.5) +
   #  geom_text(aes(x = 0.7 , y = 220, label = "Hazardous), size = 3) +
   
   # remove grids
@@ -481,7 +476,8 @@ dev.off()
 
 plot
 
-
+par(oldpar)
+dev.off()
 
 
 
