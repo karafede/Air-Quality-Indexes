@@ -619,11 +619,19 @@ BBB <- AAA %>%
 CCC <- BBB %>%
   left_join(UAE_CO, by = c("Date", "Site", "Latitude", "Longitude"))
 
-# save(CCC, UAE_AQ,UAE_CO,UAE_NO2,UAE_O3,UAE_PM10, UAE_PM25,UAE_SO2, file="D:/AQI/saves.Rdata")
+# save intermediate data into an R obejct
+save(CCC, UAE_AQ,UAE_CO,UAE_NO2,UAE_O3,UAE_PM10, UAE_PM25,UAE_SO2, file="D:/AQI/saves.Rdata")
 
 ########################################################################################################
+# restart R and clean cash memory
+.rs.restartR()
 
-# load("D:/AQI/saves.Rdata")
+library(dplyr)
+library(leaflet)
+library(readr)
+library(lubridate)
+
+load("D:/AQI/saves.Rdata")
 
 
 UAE_PM25$Date <- as.POSIXct(as.Date(UAE_PM25$Date, "%Y-%m-%d")) 
@@ -665,7 +673,7 @@ ab<- filter( AQ_data, AQ_data$Latitude ==  NA)
 ab<- filter( AQ_data, AQ_data$Longitude ==  NA)
 ab<- filter( AQ_data, AQ_data$Site ==  "Hamdan Street")
 
-rm(AQ_data, CCC, ab)
+# rm(AQ_data, CCC, ab)
 
 ########################
 
@@ -694,15 +702,25 @@ rm(AQ_data, CCC, ab)
 
 
  save(AQ_data_clean, file="D:/AQI/AQ_data_all.Rdata")
- write_csv(AQ_data_clean, "D:/AQI/AQ_data_all_clean.csv")
+# write_csv(AQ_data_clean, "D:/AQI/AQ_data_all_clean.csv")
 # write_csv(AQ_data_clean, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_clean.csv")
 
 ################################################################################
-## AIR QUALITY INDEXES ##-------------------------------------------------------
+## AIR QUALITY DATA....ALL ##-------------------------------------------------------
 ################################################################################
 
 # AQ_data <- read_csv("D:/AQI/AQ_data_all.csv")
-# AQ-data <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all.csv")
+# AQ_data <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all.csv")
+
+# restart R and clean cash memory
+.rs.restartR()
+
+library(dplyr)
+library(leaflet)
+library(readr)
+library(lubridate)
+
+load("D:/AQI/AQ_data_all.Rdata")
  
  str(AQ_data_clean)
  head(AQ_data_clean)
@@ -714,14 +732,15 @@ rm(AQ_data, CCC, ab)
 #### correct existing data with Max daily 8h O3 and CO values #######################
  
  
- AQ_data_all_clean <- read_csv("D:/AQI/AQ_data_all_clean.csv" )
- AQ_data_all_clean$PM25_24hr <- as.numeric(AQ_data_all_clean$PM25_24hr)
+ # AQ_data_all_clean <- read_csv("D:/AQI/AQ_data_all_clean.csv" )
+ # AQ_data_all_clean$PM25_24hr <- as.numeric(AQ_data_all_clean$PM25_24hr)
  
  O3_max <- read_csv("D:/AQI/UAE_O3_8h_Max.csv")
  CO_max <- read_csv("D:/AQI/UAE_CO_8h_Max.csv")
  
- str(AQ_data_all_clean)
- head(AQ_data_all_clean)
+ # str(AQ_data_all_clean)
+ # head(AQ_data_all_clean)
+ 
  
  # AQ_data_all_clean <- AQ_data_all_clean %>%
  #   select(- Pollutant_O3,
@@ -730,15 +749,21 @@ rm(AQ_data, CCC, ab)
  #          - CO_8hr)
  
  
- AQ_data_all_clean <- AQ_data_all_clean %>%
-    select(- Pollutant_O3,
-           - Max_O3_8hr,
-           - Pollutant_CO,
-           - Max_CO_8hr)
+ # AQ_data_all_clean <- AQ_data_all_clean %>%
+ #    select(- Pollutant_O3,
+ #           - Max_O3_8hr,
+ #           - Pollutant_CO,
+ #           - Max_CO_8hr)
+ 
+ AQ_data_clean <- AQ_data_clean %>%
+   select(- Pollutant_O3,
+          - Max_O3_8hr,
+          - Pollutant_CO,
+          - Max_CO_8hr)
  
 
  
- AQ_data <- AQ_data_all_clean %>%
+ AQ_data <- AQ_data_clean %>%
    left_join(O3_max, c("Date", "Site", "Latitude", "Longitude", "Site_Type"))
  
  head(AQ_data)
@@ -748,9 +773,15 @@ rm(AQ_data, CCC, ab)
  
  head(AQ_data)
  
- write_csv(AQ_data, "D:/AQI/AQ_data_all_clean_new.csv")
+ rm(AQ_data_clean)
+ # write_csv(AQ_data, "D:/AQI/AQ_data_all_clean_new.csv")
+ # write_csv(AQ_data, "D:/AQI/AQ_data_all_clean_new_BIS_sept2017.csv")
+ save(AQ_data, file="D:/AQI/AQ_data_all_clean_new.Rdata")
  
  
+ 
+############################################################################# 
+########## END ##############################################################
 #############################################################################
 #############################################################################
 #############################################################################
@@ -762,28 +793,10 @@ rm(AQ_data, CCC, ab)
  
  
  
+
+
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- ###### old stuff #############3
+ ###### old stuff #############
 # AQ_data <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_clean.csv")
 # # AQ_data <- read_csv("D:/AQI/AQ_data_all_clean.csv")
 # str(AQ_data)

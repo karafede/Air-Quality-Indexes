@@ -4,12 +4,17 @@ library(leaflet)
 library(readr)
 library(lubridate)
 
+#################################################
+# save big data only with .Rdata format #########
+#################################################
+
 ################################################################################
 ## AIR QUALITY INDEXES ##-------------------------------------------------------
 ################################################################################
 
-AQ_data <- read_csv("D:/AQI/AQ_data_all_clean_new.csv")
+# AQ_data <- read_csv("D:/AQI/AQ_data_all_clean_new.csv")
 # AQ_data <-read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_all_clean.csv")
+load("D:/AQI/AQ_data_all_clean_new.Rdata")
 
 str(AQ_data)
 AQ_data$Max_O3_8hr <- as.numeric(AQ_data$Max_O3_8hr)
@@ -19,7 +24,8 @@ AQ_data$PM25_24hr <- as.numeric(AQ_data$PM25_24hr)
 # load function for AQI calcualtions
 
 # source("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/aqi_fun.R")
-source("D:/AQI//aqi_fun.R")
+# source("D:/AQI/aqi_fun.R")
+source("D:/AQI/aqi_fun_UAE.R")
 
 ###########
 ### O3 ####
@@ -106,19 +112,23 @@ aqi_NO2 <- as.data.frame(aqi_NO2)
 AQ_data_AQI <- cbind(AQ_data, aqi_O3, aqi_CO, aqi_PM25, aqi_PM10, aqi_SO2, aqi_NO2)
 # write_csv(AQ_data_AQI, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_AQI_new.csv")
 
-write_csv(AQ_data_AQI, "D:/AQI/AQ_data_AQI_new.csv")
+# write_csv(AQ_data_AQI, "D:/AQI/AQ_data_AQI_new.csv")
+save(AQ_data_AQI,file="D:/AQI/AQ_data_AQI_new.Rdata")
 
 ##########################################################################
 ##########################################################################
 
 # find maximum AQI in each row
 
+# restart R
+
 library(dplyr)
 library(leaflet)
 library(readr)
 library(lubridate)
 
-AQ_data_AQI <- read_csv("D:/AQI/AQ_data_AQI_new.csv")
+load("D:/AQI/AQ_data_AQI_new.Rdata")
+# AQ_data_AQI <- read_csv("D:/AQI/AQ_data_AQI_new.csv")
 # AQ_data_AQI <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_AQI.csv")
 
 
@@ -216,6 +226,7 @@ max_pollu <- function(fed){
 
 # attach the maximum
 all_AQI$max_AQI <- apply(all_AQI[,1:6], 1, max_fe)
+head(all_AQI)
 
 new_data <-data.frame()
 new_data <- apply(all_AQI[,1:6], 1, max_pollu)
@@ -228,6 +239,7 @@ new_data <- as.data.frame(new_data)
 AQ_data_AQI <- cbind(AQ_data_AQI, all_AQI[,7],new_data)
 head(AQ_data_AQI)
 # rename columns
+names(AQ_data_AQI)[names(AQ_data_AQI) == 'all_AQI[, 7]'] <- 'max_AQI'
 names(AQ_data_AQI)[names(AQ_data_AQI) == 'V1'] <- 'max_Pollutant'
 names(AQ_data_AQI)[names(AQ_data_AQI) == 'V2'] <- 'count_O3'
 names(AQ_data_AQI)[names(AQ_data_AQI) == 'V3'] <- 'count_CO'
@@ -238,8 +250,11 @@ names(AQ_data_AQI)[names(AQ_data_AQI) == 'V7'] <- 'count_NO2'
 head(AQ_data_AQI)
 
 # write_csv(AQ_data_AQI, "Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_AQI_counts_new.csv")
-write_csv(AQ_data_AQI, "D:/AQI/AQ_data_AQI_counts_new.csv")
 
+rm(all_AQI, new_data)
+
+# write_csv(AQ_data_AQI, "D:/AQI/AQ_data_AQI_counts_new.csv")
+save(AQ_data_AQI,file="D:/AQI/AQ_data_AQI_counts_new.Rdata")
 
 
 ####################################################################################
@@ -253,8 +268,9 @@ library(ggplot2)
 setwd("D:/AQI")
 
 ### read data
-AQ_data_AQI<- read_csv("D:/AQI/AQ_data_AQI_counts_new.csv")
+# AQ_data_AQI<- read_csv("D:/AQI/AQ_data_AQI_counts_new.csv")
 # AQ_data_AQI <- read_csv("Z:/_SHARED_FOLDERS/Air Quality/Phase 2/AQI/AQ_data_AQI_counts.csv")
+load("D:/AQI/AQ_data_AQI_counts_new.Rdata")
 
 head(AQ_data_AQI)
 
@@ -352,14 +368,22 @@ AQ_data_AQI_Pollutant <- AQ_data_AQI_Pollutant %>%
 
 head(AQ_data_AQI_Pollutant)
 
-write_csv(AQ_data_AQI_Pollutant, "final_AQI_2014_2016.csv")
-AQ_data_AQI_Pollutant <- read_csv("final_AQI_2014_2016.csv")
+# write_csv(AQ_data_AQI_Pollutant, "final_AQI_2014_2016.csv")
+# AQ_data_AQI_Pollutant <- read_csv("final_AQI_2014_2016.csv")
 
 # save data as R object -----------------------------------
 save(AQ_data_AQI_Pollutant, file="D:/AQI/AQI_final.Rdata")
 
 #####################################################
 # reload data ---------------------------------------
+# restart R
+
+library(dplyr)
+library(leaflet)
+library(readr)
+library(lubridate)
+library(ggplot2)
+
 load("D:/AQI/AQI_final.Rdata")
 
 head(AQ_data_AQI_Pollutant)
@@ -373,11 +397,11 @@ AQ_data_AQI <- AQ_data_AQI_Pollutant %>%
          Longitude,
          max_AQI)
 
-AQ_data_AQI_2016 <- AQ_data_AQI %>%
-  filter(DateTime <= "2016-10-01 00:00:00" & DateTime >= "2016-07-01 00:00:00")
-
-save(AQ_data_AQI_2016, file="D:/AQI/AQI_final_2016.Rdata")
-write_csv(AQ_data_AQI_2016, "D:/AQI/sample_AQI_2016.csv")
+# AQ_data_AQI_2016 <- AQ_data_AQI %>%
+#   filter(DateTime <= "2016-10-01 00:00:00" & DateTime >= "2016-07-01 00:00:00")
+# 
+# save(AQ_data_AQI_2016, file="D:/AQI/AQI_final_2016.Rdata")
+# write_csv(AQ_data_AQI_2016, "D:/AQI/sample_AQI_2016.csv")
 
 
 ########################################################################################
@@ -503,12 +527,35 @@ dev.off()
 #### DUST EVENT #########
 #########################
 
+# restart R
+
+library(dplyr)
+library(leaflet)
+library(readr)
+library(lubridate)
+library(ggplot2)
+
+load("D:/AQI/AQI_final.Rdata")
+
+head(AQ_data_AQI_Pollutant)
 str(AQ_data_AQI_Pollutant)
+
+
+AQ_data_AQI <- AQ_data_AQI_Pollutant %>%
+  dplyr::select(Site,
+                DateTime,
+                Latitude,
+                Longitude,
+                max_AQI)
 
 # filter data on the days of the dust storm event on 2 April 2015
 AQ_data_AQI_Pollutant <- AQ_data_AQI_Pollutant %>%
   filter(Date >= "2015-03-29" & Date <= "2015-04-04") 
 
+write.csv(AQ_data_AQI_Pollutant, "D:/AQI/AQI_all_DUST_event_2015.csv")
+AQ_data_AQI_Pollutant <- read_csv("D:/AQI/AQI_all_DUST_event_2015.csv")
+
+str(AQ_data_AQI_Pollutant)
 
 #########################################################
 # make plots for all the monitoring stations (facets) ###
@@ -549,8 +596,6 @@ UAE_AQI_DUST <- AQ_data_AQI_Pollutant %>%
 
 min <- as.POSIXct("2015-03-29 01:00:00") 
 max <- as.POSIXct("2015-04-05 13:00:00") 
-
-
 
 
 ############################################################################
